@@ -72,8 +72,8 @@ flowchart TD
 Clone the repository and run the setup script:
 
 ```bash
-git clone https://github.com/AtharvaShastrakar/Password-Manager.git
-cd "Password-Manager"
+git clone https://github.com/AtharvaShastrakar/Pass-Vault.git
+cd "Pass-Vault"
 ./install.sh
 ```
 
