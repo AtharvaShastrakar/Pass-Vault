@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# PASS VAULT launcher script
+set -euo pipefail
+
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+VENV_PYTHON="$PROJECT_ROOT/.venv/bin/python"
+
+if [ -x "$VENV_PYTHON" ]; then
+    PYTHON_BIN="$VENV_PYTHON"
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON_BIN="$(command -v python3)"
+else
+    echo "Error: Python 3 not found." >&2
+    exit 1
+fi
+
+# If invoked via `just run -- <cmd>`, strip the leading `--`
+if [ "${1:-}" = "--" ]; then
+    shift
+fi
+
+PYTHONPATH="$PROJECT_ROOT" exec "$PYTHON_BIN" -m passvault.cli "$@"

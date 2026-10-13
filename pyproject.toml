@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "passvault"
+version = "0.1.0"
+description = "Encrypted command-line password manager using Argon2id and AES-256-GCM"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "argon2-cffi>=21.3.0",
+    "cryptography>=41.0.0",
+    "rich>=13.0.0",
+]
+
+[project.scripts]
+pv = "passvault.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["passvault"]
+omit = ["tests/*"]
